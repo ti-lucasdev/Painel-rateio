@@ -1,0 +1,51 @@
+{
+  "name": "rateio-justo-alugueis",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Aplicação desktop para rateio justo de aluguéis e utilidades.",
+  "main": "dist/main/index.js",
+  "author": "Grupo Fit Seven - Salas Comerciais",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "start": "electron .",
+    "dev": "npm run build && npm run start",
+    "dist:win": "npm run build && electron-builder --win nsis portable"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "build": {
+    "appId": "br.com.rateiojusto.alugueis",
+    "productName": "Grupo Fit Seven - Salas Comerciais",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "build/icon.ico",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Grupo Fit Seven - Salas Comerciais - Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Grupo Fit Seven - Salas Comerciais.${ext}"
+    }
+  }
+}
